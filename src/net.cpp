@@ -156,7 +156,7 @@ string Net::asString ()
 
   s << _net.c_str ();
 
-  DEBUG (DEBUG8, "[" << this << "->" << __FUNCTION__ << "] = " << s);
+  DEBUG (DEBUG8, "[" << this << "->" << __FUNCTION__ << "] = " << s.str ());
 
   return s.str ();
 }

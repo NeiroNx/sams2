@@ -130,7 +130,7 @@ string DateFilter::getStartDateAsString () const
   strftime (strbuf, sizeof (strbuf), "%Y-%m-%d", localtime (&_date_start));
   s << strbuf;
 
-  DEBUG (DEBUG8, "[" << this << "->" << __FUNCTION__ << "] = " << s);
+  DEBUG (DEBUG8, "[" << this << "->" << __FUNCTION__ << "] = " << s.str() );
 
   return s.str ();
 }
@@ -143,7 +143,7 @@ string DateFilter::getEndDateAsString () const
   strftime (strbuf, sizeof (strbuf), "%Y-%m-%d", localtime (&_date_end));
   s << strbuf;
 
-  DEBUG (DEBUG8, "[" << this << "->" << __FUNCTION__ << "] = " << s);
+  DEBUG (DEBUG8, "[" << this << "->" << __FUNCTION__ << "] = " << s.str ());
 
   return s.str ();
 }

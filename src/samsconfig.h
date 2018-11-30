@@ -26,6 +26,7 @@ using namespace std;
 #include <string.h>
 
 #include "dbconn.h"
+#include "dbquery.h"
 
 #define defDEBUG              "DEBUGLEVEL"
 #define defDBSERVER           "DB_SERVER"

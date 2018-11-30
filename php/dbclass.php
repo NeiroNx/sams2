@@ -31,14 +31,14 @@ class SAMSDB
 
   function mysqldb_query_value($query)
   {
-	if(($this->result = mysql_query($query, $this->link))==FALSE)
+	if(($this->result = $this->link->query($query))==FALSE)
 	{
 		$this->dberror=1;
-		$this->dberrortext=mysql_error();
+		$this->dberrortext=$this->link->error;
 	}
 	else
 	{
-		$num_rows = mysql_num_rows($this->result);
+		$num_rows = mysqli_num_rows($this->result);
 		return($num_rows);
 	}
 	return($num_rows);
@@ -127,7 +127,7 @@ class SAMSDB
   }
   function mysqldb_fetch_array()
   {
-         $row=mysql_fetch_array($this->result);
+         $row=mysqli_fetch_array($this->result);
          return($row);
   }
   function pgsqldb_fetch_array()
@@ -171,7 +171,7 @@ class SAMSDB
 */
   function mysqldb_query($query)
   {
-        $this->result = mysql_query($query,$this->link) or die("Invalid query: " . mysql_error());
+        $this->result = $this->link->query($query) or die("Invalid query: " . $this->link->error);
   }
   function pgsqldb_query($query)
   {
@@ -222,7 +222,7 @@ class SAMSDB
 */
   function free_mysqldb_query()
   {
-    mysql_free_result($this->result);
+    mysqli_free_result($this->result);
   }
   function free_pgsqldb_query()
   {
@@ -268,12 +268,13 @@ class SAMSDB
 */
   function mysqldb_connect($host,$user,$passwd,$dbname)
   {
-	if(($link=@mysql_connect($host,$user,$passwd,new_link))==FALSE)
+	$link = new mysqli($host,$user,$passwd);
+	if($link->connect_error)
 	{
 		$this->dberror=1;
-		$this->dberrortext=mysql_error();
+		$this->dberrortext=$conn->connect_error;
 	}
-	if($link && mysql_select_db($dbname)==FALSE)
+	if($link->select_db($dbname)==FALSE)
 	  {
 		$this->dberrortext="Error connection to database $dbname@$host<BR>";
 		$this->dberror=1;

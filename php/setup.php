@@ -138,7 +138,7 @@ function step_2($lang)
 	echo "<TABLE WIDTH=80%>";
 	if($SAMSConf->DB_ENGINE=="MySQL")
 	{
-		get_php_function("mysql_connect",$setup_24, $lang);
+		get_php_function("mysqli_connect",$setup_24, $lang);
 	}
 	if($SAMSConf->DB_ENGINE=="PostgreSQL")
 	{
@@ -433,12 +433,20 @@ echo "<h2>db:$db</h2>";
     if($db=="MySQL" && ($odbc==0 || $odbc == "No"))
       {
 	$charset="ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin";
-	$link=@mysql_connect($host,$user,$passwd) || die (mysql_error());
-	if($link && mysql_select_db($dbname)==FALSE)
+	$conn=new mysqli($host,$user,$passwd);
+	if($conn->connect_error)
+	  {
+		die("Connection failed: ".$conn->connect_error);
+	  }
+	if($conn->select_db($dbname)==FALSE)
 	  {
 		echo "Create database $dbname<BR>";
-		$result = mysql_query("CREATE DATABASE $dbname  CHARACTER SET utf8 COLLATE utf8_general_ci") or die("Invalid query: " . mysql_error());
-		echo "Database $dbname Created<BR>";
+		$result = $conn->query("CREATE DATABASE $dbname CHARACTER SET utf8 COLLATE utf8_general_ci;");
+		if($conn->error)
+		  {
+			die("Invalid query: " . $conn->error);
+		  }
+		echo "Database $dbname  Created<BR>";
 	  }
 	else
 	  {

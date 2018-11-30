@@ -34,7 +34,7 @@ else
 	exit 1
 fi
 
-. /etc/default/rcS
+#. /etc/default/rcS
 
 case "$1" in 
 	start)
