@@ -131,7 +131,7 @@ function ProxyReConfigForm()
   print("{\n");
   print("    formname.ntlmdomain.disabled=true; \n");
   print("    formname.bigdomain.disabled=true; \n");
-  print("    formname.bigusername.disabled=true; \n");
+  print("    formname.bigusername.disabled=false; \n");
   print("    formname.nameencode.disabled=true; \n");
   print("}\n");
   print("function ChangeAuthScheme(formname)\n");
@@ -149,14 +149,14 @@ function ProxyReConfigForm()
   print("    {\n");
   print("      formname.usedomain.disabled=true; \n");
   print("      formname.bigdomain.disabled=true; \n");
-  print("      formname.bigusername.disabled=true; \n");
+  print("      formname.bigusername.disabled=false; \n");
   print("      formname.separator.disabled=true; \n");
   print("    }\n");
   print("  else if(auth==\"ldap\")\n");
   print("    {\n");
   print("      formname.usedomain.disabled=true; \n");
   print("      formname.bigdomain.disabled=true; \n");
-  print("      formname.bigusername.disabled=true; \n");
+  print("      formname.bigusername.disabled=false; \n");
   print("      formname.separator.disabled=true; \n");
   print("    }\n");
   print("  else if(auth==\"adld\")\n");
@@ -379,7 +379,6 @@ function ProxyReConfigForm()
   {
      print("<INPUT TYPE=\"CHECKBOX\" NAME=\"usedomain\" $DOMAINDISABLE onchange=EnableDomainName(samsreconfigform)>$adminbuttom_1_prop_SamsReConfigForm_19\n");
      $DOMAINDISABLE="DISABLED";
-     $USERDISABLE="DISABLED";
   }
  
 
@@ -398,9 +397,8 @@ function ProxyReConfigForm()
   else
             print("<OPTION VALUE=2>$adminbuttom_1_prop_SamsReConfigForm_20c</OPTION>\n");
   print("</SELECT >\n");
-  
   print("<BR>$adminbuttom_1_prop_SamsReConfigForm_22 \n");
-  print("<SELECT NAME=\"bigusername\" $USERDISABLE onchange=EnableDomainName(samsreconfigform)>\n");
+  print("<SELECT NAME=\"bigusername\" $USERDISABLE onchange=ChangeAuthScheme(samsreconfigform)>\n");
   if($PROXYConf->s_bigu==0)
             print("<OPTION VALUE=0 SELECTED>$adminbuttom_1_prop_SamsReConfigForm_20a</OPTION>\n");
   else
