@@ -103,6 +103,12 @@ SquidLogLine::logCacheResult SquidLogLine::parseCacheResult (const string & cr)
     res = TCP_NEGATIVE_HIT;
   else if (cr == "TCP_MISS")
     res = TCP_MISS;
+  else if (cr == "TCP_MISS_ABORTED")
+    res = TCP_MISS_ABORTED;
+  else if (cr == "TAG_NONE")
+    res = TAG_NONE;
+  else if (cr == "TCP_TUNNEL")
+    res = TCP_TUNNEL;
   else if (cr == "TCP_REFRESH_HIT")
     res = TCP_REFRESH_HIT;
   else if (cr == "TCP_REFRESH_MODIFIED")
@@ -308,6 +314,12 @@ string SquidLogLine::toString (logCacheResult cr)
     res = "TCP_NEGATIVE_HIT";
   else if (cr == TCP_MISS)
     res = "TCP_MISS";
+  else if (cr == TCP_MISS_ABORTED)
+    res = "TCP_MISS_ABORTED";
+  else if (cr == TAG_NONE)
+    res = "TAG_NONE";
+  else if (cr == TCP_TUNNEL)
+    res = "TCP_TUNNEL";
   else if (cr == TCP_REFRESH_HIT)
     res = "TCP_REFRESH_HIT";
   else if (cr == TCP_REFRESH_MODIFIED)

@@ -595,7 +595,7 @@ int main (int argc, char *argv[])
               if  ( ((tpl->getPeriodType () == Template::PERIOD_MONTH) && (time_now->tm_mday == 1)) ||
                     ((tpl->getPeriodType () == Template::PERIOD_WEEK) && (time_now->tm_wday == 1))  ||
                     (tpl->getPeriodType () == Template::PERIOD_DAY) ||
-                    (tpl->getClearDate (time_clear) && (time_now->tm_year == time_clear.tm_year) && (time_now->tm_yday == time_clear.tm_yday))
+                    (tpl->getClearDate (time_clear) && (time_now->tm_year >= time_clear.tm_year) && (time_now->tm_yday >= time_clear.tm_yday))
                   )
                 {
                   DEBUG (DEBUG_DAEMON, "Clear counters for template " << tpl_ids[i]);

@@ -54,6 +54,9 @@ public:
     */
     TCP_NEGATIVE_HIT,
     TCP_MISS,                   ///< The requested object was not in the cache
+    TCP_MISS_ABORTED,
+    TCP_TUNNEL,
+    TAG_NONE,
 
     /** The object was in the cache, but STALE. An If-Modified-Since request
     *  was made and a "304 Not Modified" reply was received.

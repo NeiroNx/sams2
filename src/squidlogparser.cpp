@@ -458,6 +458,9 @@ void SquidLogParser::parseFile (DBConn *conn, const string & fname, bool from_be
           usr->addHit (s_hit);
         case SquidLogLine::TCP_NEGATIVE_HIT:
         case SquidLogLine::TCP_MISS:
+        case SquidLogLine::TCP_MISS_ABORTED:
+        case SquidLogLine::TAG_NONE:
+        case SquidLogLine::TCP_TUNNEL:
         case SquidLogLine::TCP_REFRESH_MISS:
         case SquidLogLine::TCP_REFRESH_MODIFIED:
         case SquidLogLine::TCP_CLIENT_REFRESH:
