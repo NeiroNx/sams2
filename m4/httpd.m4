@@ -1,7 +1,7 @@
 
 AC_DEFUN([AC_CHECK_HTTPD],
 [
-ac_httpd="/usr/sbin/httpd /usr/local/sbin/httpd /usr/sbin/httpd2 /usr/local/sbin/httpd2 /usr/sbin/apache /usr/local/sbin/apache /usr/sbin/apache2 /usr/local/sbin/apache2"
+ac_httpd="/usr/sbin/httpd /usr/local/sbin/httpd /usr/sbin/httpd2 /usr/local/sbin/httpd2 /usr/sbin/apache /usr/local/sbin/apache /usr/sbin/apache2ctl /usr/local/sbin/apache2ctl"
 for i in $ac_httpd; do
     if test -e $i
     then
@@ -26,7 +26,7 @@ else
     else
 	if [[ $debian -eq 1 ]]
 	then
-	    HTTPD_INCLUDE=$HTTPD_ROOT/conf.d/
+	    HTTPD_INCLUDE=$HTTPD_ROOT/conf-enabled
 	else
 	    HTTPD_INCLUDE=$HTTPD_ROOT/`grep ^"Include " $SERVER_CONFIG_FILE |sed -e 's|/.*$ |/|g'|sed -e 's/Include//g'|sed -e 's, ,,g'| sed -e 's/[[^\/]]*$//g'`
 	fi

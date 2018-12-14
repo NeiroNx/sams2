@@ -1,5 +1,6 @@
 AC_INIT(sams2, 2.0.0, sams@nixdev.net)
 AM_INIT_AUTOMAKE(sams2, 2.0.0)
+AC_PREFIX_DEFAULT([/usr])
 AC_CONFIG_SRCDIR([src/tools.h])
 AC_CONFIG_HEADER([src/config.h])
 

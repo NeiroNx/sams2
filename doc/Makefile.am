@@ -56,18 +56,18 @@ src/html: src/Doxyfile
 endif
 
 install-data-local: $(doc_list)
-	$(mkinstalldirs) $(DESTDIR)/$(docdir)
+	$(mkinstalldirs) $(docdir)
 	for f in $(doc_list) ; do \
 		if [ -d "$$f" ] ; then \
-			$(mkinstalldirs) $(DESTDIR)/$(docdir)/"$$f" ;\
-			cp -R "$$f" $(DESTDIR)/$(docdir) ;\
+			$(mkinstalldirs) $(docdir)/"$$f" ;\
+			cp -R "$$f" $(docdir) ;\
 		else \
-			cp "$$f" $(DESTDIR)/$(docdir) ;\
+			cp "$$f" $(docdir) ;\
 		fi \
 	done
 
 uninstall-local:
-	rm -fr $(DESTDIR)/$(docdir)
+	rm -fr $(docdir)
 
 if BUILD_SRC_DOCS
 distclean-am: clean-am distclean-generic
